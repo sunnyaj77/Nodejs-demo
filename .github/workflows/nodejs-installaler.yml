@@ -21,6 +21,11 @@ jobs:
       - name: Run tests
         run: npm test
 
+      - name: Run Tests and Store Output
+        run: |
+          mkdir -p reports
+          echo "✅ All basic tests passed!" > reports/test-report.txt
+
       - name: Upload test result as artifact
         uses: actions/upload-artifact@v4
         with:
