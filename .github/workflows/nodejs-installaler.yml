@@ -18,3 +18,20 @@ jobs:
         run: |
           node -v
           npm -v
+  
+  verification:
+    runs-on: ubuntu-latest
+    steps:
+        - name: checkout code
+          uses: actions/checkout@v3
+
+        - name: setup nodejs
+          uses: actions/setup-node@v4
+          with:
+            node-version: '18'
+
+        - name: Install dependancies
+          run: npm install
+
+        - name: build app
+          run: npm run build
