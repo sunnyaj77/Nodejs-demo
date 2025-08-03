@@ -1,38 +1,28 @@
-name: nodejs installer
+name: Node.js CI
 
 on: workflow_dispatch
 
 jobs:
-  installation:
+  build-and-test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: checkout code
+      - name: Checkout source code
         uses: actions/checkout@v3
 
-      - name: install.js and npm
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y nodejs npm
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
 
-      - name: check nodejs version
-        run: |
-          node -v
-          npm -v
-  
-  verification:
-    runs-on: ubuntu-latest
-    needs: installation
-    steps:
-        - name: checkout code
-          uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm install
 
-        - name: setup nodejs
-          uses: actions/setup-node@v4
-          with:
-            node-version: '18'
+      - name: Run tests
+        run: npm test
 
-        - name: Install dependancies
-          run: npm install
-
-        - name: build app
-          run: npm run build
+      - name: Upload test result as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-logs
+          path: ./ # Could be logs folder in real use
