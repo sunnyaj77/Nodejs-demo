@@ -4,7 +4,7 @@
   "description": "A simple Node.js app with GitHub Actions CI workflow",
   "main": "src/app.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --outputFile=reports/test-report.json --json"
   },
   "devDependencies": {
     "jest": "^29.0.0"
