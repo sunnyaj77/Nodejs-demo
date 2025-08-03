@@ -21,6 +21,7 @@ jobs:
   
   verification:
     runs-on: ubuntu-latest
+    needs: installation
     steps:
         - name: checkout code
           uses: actions/checkout@v3
