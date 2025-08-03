@@ -25,4 +25,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: test-logs
-          path: ./ # Could be logs folder in real use
+          path: reports/ # Could be logs folder in real use
