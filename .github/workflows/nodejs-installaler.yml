@@ -26,9 +26,6 @@ jobs:
          mkdir -p reports
          npm test
 
-      - name: List Report Files (Debug)
-        run: ls -la reports/
-
       - name: Upload test result as artifact
         uses: actions/upload-artifact@v4
         with:
