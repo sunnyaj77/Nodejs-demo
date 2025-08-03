@@ -21,13 +21,16 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Run Tests and Store Output
+      - name: Run Tests and Generate Report
         run: |
-          mkdir -p reports
-          echo "✅ All basic tests passed!" > reports/test-report.txt
+         mkdir -p reports
+         npm test
+
+      - name: List Report Files (Debug)
+        run: ls -la reports/
 
       - name: Upload test result as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: test-logs
-          path: reports/ # Could be logs folder in real use
+         name: test-logs
+         path: reports/
